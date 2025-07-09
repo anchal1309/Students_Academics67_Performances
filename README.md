@@ -18,5 +18,5 @@ This project is a machine learning application that predicts whether a student w
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/anchal1309/student-performance-predictor.git
+git clone https://github.com/anchal1309/Students_Academics67_Performances.git
 cd student-performance-predictor
