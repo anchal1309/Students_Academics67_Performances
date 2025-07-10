@@ -15,8 +15,6 @@ This project is a machine learning application that predicts whether a student w
 
 ## 🚀 How to Run the Project
 
-### 1. Clone the repository
+### 1. Click on this link
 
-```bash
-git clone https://github.com/anchal1309/Students_Academics67_Performances.git
-cd student-performance-predictor
+https://studentsacademics67performances-csavxb6zqmaebd99kvbc7g.streamlit.app/
