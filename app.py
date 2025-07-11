@@ -2,33 +2,44 @@ import streamlit as st
 import pickle
 import numpy as np
 
-with open('model.pkl', 'rb') as f:
+# Load your trained model
+with open('Student.pkl', 'rb') as f:
     model = pickle.load(f)
 
-st.title("Student performance prediction")
+st.title("🎓 Student Performance Prediction")
 
-feature1 = st.number_input("Enter student id:")
-feature2 = st.number_input("enter gender ('2' for others, '1' for male , '2' for female):")
-feature3= st.number_input("enter age:")
-feature4 = st.number_input("enter grade level:")
-feature5 = st.number_input("enter math score:")
-feature6 = st.number_input("enter reading score:")
-feature7 = st.number_input("enter writing score:")
-feature8 = st.number_input("enter attendance rate:")
-feature9 = st.number_input("enter study hours:")
-feature10 = st.number_input("enter internet access ('1' for yes ,'0' for no):")
-feature11 = st.number_input("enter lunch type('0' for reduced , '1' for standard)")
-feature12 = st.number_input("enter extra activities ('1' for yes , '0' for no)")
+# Text inputs (blank by default)
+feature1 = st.text_input("Enter student id:")
+feature2 = st.text_input("Enter gender ('2' for others, '1' for male, '0' for female):")
+feature3 = st.text_input("Enter age:")
+feature4 = st.text_input("Enter grade level:")
+feature5 = st.text_input("Enter math score:")
+feature6 = st.text_input("Enter reading score:")
+feature7 = st.text_input("Enter writing score:")
+feature8 = st.text_input("Enter attendance rate:")
+feature9 = st.text_input("Enter study hours:")
+feature10 = st.text_input("Enter internet access ('1' for yes, '0' for no):")
+feature11 = st.text_input("Enter lunch type ('0' for reduced, '1' for standard):")
+feature12 = st.text_input("Enter extra activities ('1' for yes, '0' for no):")
+
+# Check if all fields are filled
+inputs = [feature1, feature2, feature3, feature4, feature5, feature6,
+          feature7, feature8, feature9, feature10, feature11, feature12]
 
 if st.button("Predict"):
-    prediction = model.predict(np.array([[feature1,feature2,feature3,feature4,feature5,feature6,
-                                            feature7,feature8,feature9,feature10,feature11,feature12]]))
-    # if prediction>=0.5:
-    #     print("pass")
-    # else:
-    #     print('fail')
-    # st.success(f"Prediction: {prediction[0]}")
-    result = "Pass" if prediction >= 0.5 else "Fail"
+    if all(inputs):
+        try:
+            # Convert all inputs to float
+            features = [float(i) for i in inputs]
+            prediction = model.predict([features])
 
-    st.markdown(f"### 🧠 Prediction: **{result}**")
-    st.write(f"Model confidence (probability of 'Pass'): **{prediction[0]:.2f}**")
+            # You can use thresholding logic or model.predict_proba() if available
+            result = "Pass" if prediction[0] >= 0.5 else "Fail"
+
+            st.markdown(f"### 🧠 Prediction: **{result}**")
+            st.write(f"Model confidence (raw output): **{prediction[0]:.2f}**")
+
+        except ValueError:
+            st.error("❌ Please enter valid numbers in all fields.")
+    else:
+        st.warning("⚠️ Please fill in all the fields before predicting.")
