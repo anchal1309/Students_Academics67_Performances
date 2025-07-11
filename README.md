@@ -6,12 +6,18 @@ This project is a machine learning application that predicts whether a student w
 
 ## 💡 Project Overview
 
-- ✅ Trained a regression model using scikit-learn
+- ✅ Trained a classification model using scikit-learn
 - ✅ Saved the model using `pickle`
 - ✅ Built a user-friendly UI using Streamlit
 - ✅ Deployed locally using `streamlit run app.py`
 
 ---
+## 💡 Accuracy for different Classification Algorithms:
+- ✅ Logistic Regression = 50%
+- ✅ Support Vector Machine = 50%
+- ✅ Decision Tree = 48%
+- ✅ Random Forest Classifier = 57%
+- ✅ KNearestNeighbors = 51%
 
 ## 🚀 How to Run the Project
 
